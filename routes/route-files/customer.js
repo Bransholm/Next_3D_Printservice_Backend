@@ -9,7 +9,7 @@ import {
 
 const customersRouter = Router();
 
-// Reads the catalogue data
+// Reads the customer email
 customersRouter.get("/", async (request, response) => {
   try {
     const queryString = /*sql*/ `SELECT Email FROM Customers`;
@@ -23,7 +23,7 @@ customersRouter.get("/", async (request, response) => {
   }
 });
 
-// Hvad med error handling?
+// Reads the customer by email
 customersRouter.get("/:email", async (request, response) => {
   try {
     const email = request.params.email;
