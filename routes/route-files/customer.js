@@ -39,6 +39,20 @@ customersRouter.get("/:email", async (request, response) => {
   }
 });
 
+// Reads the customer register
+customersRouter.get("/register", async (request, response) => {
+  try {
+    const queryString = /*sql*/ `SELECT * FROM Customers`;
+    const [result] = await dbConnection.execute(queryString);
+    response.json(result);
+  } catch (error) {
+    console.error(error);
+    response
+      .status(500)
+      .json({ message: "An Internal Server Error Has Occured" });
+  }
+});
+
 // creates a new row in the Customers table
 customersRouter.post("/", async (request, response) => {
   await dbConnection.beginTransaction();
