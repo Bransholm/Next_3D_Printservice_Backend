@@ -15,6 +15,7 @@ import variablesRouter from "./routes/route-files/variables.js";
 import financeRouter from "./routes/route-files/finance.js";
 import viewCustomersRouter from "./routes/route-files/view-customers.js";
 import adminCatalogueRouter from "./routes/route-files/admin-catalogue.js";
+import ordersRouter from "./routes/route-files/orders.js";
 
 const app = express();
 const port = process.env.PORT || 4811;
@@ -35,6 +36,7 @@ app.use("/variables", variablesRouter);
 app.use("/finance", financeRouter);
 app.use("/viewCustomers", viewCustomersRouter);
 app.use("/adminCatalogue", adminCatalogueRouter);
+app.use("/orders", ordersRouter);
 
 app.listen(port, () => {
   console.log(
