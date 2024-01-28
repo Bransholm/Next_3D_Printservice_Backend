@@ -3,7 +3,7 @@ import dbConnection from "../../data-layer/data.js";
 
 const ordersRouter = Router();
 
-//Get router for view orders
+//Get router for view orders with Status
 ordersRouter.get("/", async (request, response) => {
   try {
     const status = request.query.status;
