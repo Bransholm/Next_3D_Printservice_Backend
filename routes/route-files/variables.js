@@ -21,4 +21,41 @@ variablesRouter.get("/", async (request, response) => {
   }
 });
 
+
+// Put route for admin settings
+async function updateVariablesQuery(request) {
+  const body = request.body;
+
+  const queryString =
+    /*sql*/
+    `
+        UPDATE variables SET Tax=?, ShippingPrice=?, PriceCalculationForm=?, MobilePayNumber=? WHERE Id =1;
+    `;
+
+  const updateValues = [
+    body.Tax,
+    body.ShippingPrice,
+    body.PriceCalculationForm,
+    body.MobilePayNumber,
+  ];
+  const [result] = await dbConnection.query(queryString, updateValues);
+  return result;
+}
+variablesRouter.put("/", async (request, response) => {
+  try {
+    const result = await updateVariablesQuery(request);
+    if (!result || result.affectedRows === 0) {
+      rowIdNotFoundResponse(id, response);
+    } else {
+      response.json(result);
+    }
+  } catch (error) {
+    console.error(error);
+    response
+      .status(500)
+      .json({ message: "An Internal Server Error Has Occured" });
+  }
+});
+
+
 export default variablesRouter;
