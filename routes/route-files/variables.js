@@ -33,10 +33,10 @@ async function updateVariablesQuery(request) {
     `;
 
   const updateValues = [
-    body.Tax,
-    body.ShippingPrice,
-    body.PriceCalculationForm,
-    body.MobilePayNumber,
+    body.tax,
+    body.shippingPrice,
+    body.priceCalculationForm,
+    body.mobilePayNumber,
   ];
   const [result] = await dbConnection.query(queryString, updateValues);
   return result;
